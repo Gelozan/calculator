@@ -190,6 +190,20 @@ void MainWindow::on_plus_button_clicked()
     ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
 }
 
+void MainWindow::on_multiplication_button_clicked()
+{
+    double secondNum = ui->input_line->text().toDouble();
+
+    if (!currentOperator.isEmpty() && !secondNumberFlag) {
+        calculate(secondNum);
+    } else if (currentOperator.isEmpty()) {
+        firstNum = secondNum;
+    }
+
+    currentOperator = "*";
+    secondNumberFlag = true;
+    ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
+}
 
 void MainWindow::on_equal_button_clicked()
 {
