@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMessageBox>>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -54,12 +54,16 @@ private slots:
 
     void on_division_button_clicked();
 
+    void on_minus_button_clicked();
+
+    void on_mod_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     double firstNum;
     bool secondNumberFlag;
     QString currentOperator;
-
+    QMessageBox msgBox;
     void calculate(double secondNum);
 };
 #endif // MAINWINDOW_H

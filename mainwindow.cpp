@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <cmath>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -167,7 +168,6 @@ void MainWindow::on_delete_button_clicked()
 
 void MainWindow::calculate(double secondNum)
 {
-    QMessageBox msgBox;
     if (currentOperator == "+") {
         firstNum += secondNum;
     } else if (currentOperator == "*") {
@@ -176,14 +176,23 @@ void MainWindow::calculate(double secondNum)
         if (secondNum == 0.0) {
             msgBox.setText("Ошибка! На ноль делить нельзя!");
             msgBox.exec();
+        } else {
+            firstNum /= secondNum;
+        }
+    } else if (currentOperator == "-") {
+        firstNum -= secondNum;
+    } else if (currentOperator == "%") {
+        if (secondNum == 0.0) {
+            msgBox.setText("Ошибка: Деление на ноль");
+            msgBox.exec();
             ui->input_line->setText("0");
             currentOperator = "";
             secondNumberFlag = false;
             return;
         } else {
-            firstNum /= secondNum;
+            firstNum = std::fmod(firstNum, secondNum);
         }
-    } else {
+    }  else {
         firstNum = secondNum;
     }
 
@@ -244,5 +253,35 @@ void MainWindow::on_equal_button_clicked()
         secondNumberFlag = false;
         ui->label_operation->clear();
     }
+}
+
+void MainWindow::on_minus_button_clicked()
+{
+    double secondNum = ui->input_line->text().toDouble();
+
+    if (!currentOperator.isEmpty() && !secondNumberFlag) {
+        calculate(secondNum);
+    } else if (currentOperator.isEmpty()) {
+        firstNum = secondNum;
+    }
+
+    currentOperator = "-";
+    secondNumberFlag = true;
+    ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
+}
+
+void MainWindow::on_mod_button_clicked()
+{
+    double secondNum = ui->input_line->text().toDouble();
+
+    if (!currentOperator.isEmpty() && !secondNumberFlag) {
+        calculate(secondNum);
+    } else if (currentOperator.isEmpty()) {
+        firstNum = secondNum;
+    }
+
+    currentOperator = "%";
+    secondNumberFlag = true;
+    ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
 }
 
