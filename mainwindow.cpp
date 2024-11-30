@@ -364,3 +364,31 @@ void MainWindow::on_cos_button_clicked()
     ui->label_operation->setText("cos(" +QString::number(secondNum)+")");
 }
 
+
+void MainWindow::on_mrc_button_clicked()
+{
+    if (mrcPressedOnce) {
+        memoryValue = 0.0;
+        mrcPressedOnce = false;
+    } else {
+        ui->input_line->setText(QString::number(memoryValue));
+        mrcPressedOnce = true;
+    }
+}
+
+
+void MainWindow::on_mm_button_clicked()
+{
+    double currentValue = ui->input_line->text().toDouble();
+    memoryValue -= currentValue;
+    mrcPressedOnce = false;
+}
+
+
+void MainWindow::on_mp_button_clicked()
+{
+    double currentValue = ui->input_line->text().toDouble();
+    memoryValue += currentValue;
+    mrcPressedOnce = false;
+}
+
