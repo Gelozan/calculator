@@ -169,9 +169,12 @@ void MainWindow::calculate(double secondNum)
 {
     if (currentOperator == "+") {
         firstNum += secondNum;
+    } else if (currentOperator == "-") {
+        firstNum -= secondNum;
     } else {
         firstNum = secondNum;
     }
+
     ui->input_line->setText(QString::number(firstNum));
 }
 
@@ -201,4 +204,21 @@ void MainWindow::on_equal_button_clicked()
         ui->label_operation->clear();
     }
 }
+
+void MainWindow::on_minus_button_clicked()
+{
+    double secondNum = ui->input_line->text().toDouble();
+
+    if (!currentOperator.isEmpty() && !secondNumberFlag) {
+        calculate(secondNum);
+    } else if (currentOperator.isEmpty()) {
+        firstNum = secondNum;
+    }
+
+    currentOperator = "-";
+    secondNumberFlag = true;
+    ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
+}
+
+
 
