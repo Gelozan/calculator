@@ -285,3 +285,11 @@ void MainWindow::on_mod_button_clicked()
     ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
 }
 
+
+void MainWindow::on_sin_button_clicked()
+{
+    double sin_chislo=ui->input_line->text().toDouble();
+    ui->input_line->setText(QString::number(std::sin(sin_chislo)));
+    ui->label_operation->setText("sin(" +QString::number(sin_chislo)+")");
+}
+
