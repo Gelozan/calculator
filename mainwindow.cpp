@@ -167,11 +167,26 @@ void MainWindow::on_delete_button_clicked()
 
 void MainWindow::calculate(double secondNum)
 {
+    QMessageBox msgBox;
     if (currentOperator == "+") {
         firstNum += secondNum;
+    } else if (currentOperator == "*") {
+        firstNum *= secondNum;
+    } else if (currentOperator == "/") {
+        if (secondNum == 0.0) {
+            msgBox.setText("Ошибка! На ноль делить нельзя!");
+            msgBox.exec();
+            ui->input_line->setText("0");
+            currentOperator = "";
+            secondNumberFlag = false;
+            return;
+        } else {
+            firstNum /= secondNum;
+        }
     } else {
         firstNum = secondNum;
     }
+
     ui->input_line->setText(QString::number(firstNum));
 }
 
