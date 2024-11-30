@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -48,6 +49,10 @@ private slots:
     void on_plus_button_clicked();
 
     void on_equal_button_clicked();
+
+    void on_multiplication_button_clicked();
+
+    void on_division_button_clicked();
 
 private:
     Ui::MainWindow *ui;
