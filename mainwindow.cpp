@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <cmath>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -171,7 +172,18 @@ void MainWindow::calculate(double secondNum)
         firstNum += secondNum;
     } else if (currentOperator == "-") {
         firstNum -= secondNum;
-    } else {
+    } else if (currentOperator == "%") {
+        if (secondNum == 0.0) {
+            qmsgbx.setText("Ошибка: Деление на ноль");
+            qmsgbx.exec();
+            ui->input_line->setText("0");
+            currentOperator = "";
+            secondNumberFlag = false;
+            return;
+        } else {
+            firstNum = std::fmod(firstNum, secondNum);
+        }
+    }  else {
         firstNum = secondNum;
     }
 
@@ -220,5 +232,18 @@ void MainWindow::on_minus_button_clicked()
     ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
 }
 
+void MainWindow::on_mod_button_clicked()
+{
+    double secondNum = ui->input_line->text().toDouble();
 
+    if (!currentOperator.isEmpty() && !secondNumberFlag) {
+        calculate(secondNum);
+    } else if (currentOperator.isEmpty()) {
+        firstNum = secondNum;
+    }
+
+    currentOperator = "%";
+    secondNumberFlag = true;
+    ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
+}
 
