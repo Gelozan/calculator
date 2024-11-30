@@ -68,6 +68,8 @@ private slots:
 
     void on_floor_button_clicked();
 
+    void on_ceil_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     double firstNum;

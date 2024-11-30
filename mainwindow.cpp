@@ -370,3 +370,9 @@ void MainWindow::on_floor_button_clicked()
     ui->input_line->setText(QString::number(std::floor(ui->input_line->text().toDouble())));
 }
 
+
+void MainWindow::on_ceil_button_clicked()
+{
+    ui->input_line->setText(QString::number(std::ceil(ui->input_line->text().toDouble())));
+}
+
