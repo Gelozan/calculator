@@ -58,6 +58,10 @@ private slots:
 
     void on_mod_button_clicked();
 
+    void on_power_button_clicked();
+
+    void on_sqrt_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     double firstNum;
