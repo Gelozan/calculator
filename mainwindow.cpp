@@ -338,6 +338,16 @@ void MainWindow::on_power_button_clicked()
 
 void MainWindow::on_sqrt_button_clicked()
 {
-
+    double secondNum = ui->input_line->text().toDouble();
+    if (secondNum < 0) {
+        msgBox.setText("Ошибка! Не определено.");
+        msgBox.exec();
+        ui->input_line->setText("0");
+    }
+    else
+    {
+        ui->input_line->setText(QString::number(std::sqrt(secondNum)));
+        ui->label_operation->setText("√" + QString::number(secondNum));
+    }
 }
 
