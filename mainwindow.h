@@ -60,6 +60,8 @@ private slots:
 
     void on_sin_button_clicked();
 
+    void on_cos_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     double firstNum;

@@ -288,8 +288,16 @@ void MainWindow::on_mod_button_clicked()
 
 void MainWindow::on_sin_button_clicked()
 {
-    double sin_chislo=ui->input_line->text().toDouble();
-    ui->input_line->setText(QString::number(std::sin(sin_chislo)));
-    ui->label_operation->setText("sin(" +QString::number(sin_chislo)+")");
+    double sin_chisla=ui->input_line->text().toDouble();
+    ui->input_line->setText(QString::number(std::sin(sin_chisla)));
+    ui->label_operation->setText("sin(" +QString::number(sin_chisla)+")");
+}
+
+
+void MainWindow::on_cos_button_clicked()
+{
+    double cos_chisla=ui->input_line->text().toDouble();
+    ui->input_line->setText(QString::number(std::cos(cos_chisla)));
+    ui->label_operation->setText("cos(" +QString::number(cos_chisla)+")");
 }
 
