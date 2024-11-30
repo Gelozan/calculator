@@ -45,7 +45,16 @@ private slots:
 
     void on_delete_button_clicked();
 
+    void on_plus_button_clicked();
+
+    void on_equal_button_clicked();
+
 private:
     Ui::MainWindow *ui;
+    double firstNum;
+    bool secondNumberFlag;
+    QString currentOperator;
+
+    void calculate(double secondNum);
 };
 #endif // MAINWINDOW_H
