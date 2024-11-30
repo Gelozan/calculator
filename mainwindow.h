@@ -66,6 +66,12 @@ private slots:
 
     void on_cos_button_clicked();
 
+    void on_mrc_button_clicked();
+
+    void on_mm_button_clicked();
+
+    void on_mp_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     double firstNum;
@@ -73,5 +79,7 @@ private:
     QString currentOperator;
     QMessageBox msgBox;
     void calculate(double secondNum);
+    double memoryValue;
+    bool mrcPressedOnce;
 };
 #endif // MAINWINDOW_H
