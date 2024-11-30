@@ -49,6 +49,10 @@ private slots:
 
     void on_equal_button_clicked();
 
+    void on_multiplication_button_clicked();
+
+    void on_division_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     double firstNum;
