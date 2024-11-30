@@ -39,7 +39,6 @@ private slots:
 
     void on_nine_button_clicked();
 
-
     void on_point_button_clicked();
 
     void on_clear_button_clicked();
@@ -58,6 +57,24 @@ private slots:
 
     void on_mod_button_clicked();
 
+    void on_power_button_clicked();
+
+    void on_sqrt_button_clicked();
+
+    void on_sin_button_clicked();
+
+    void on_cos_button_clicked();
+
+    void on_mrc_button_clicked();
+
+    void on_mm_button_clicked();
+
+    void on_mp_button_clicked();
+
+    void on_floor_button_clicked();
+
+    void on_ceil_button_clicked();
+
 private:
     Ui::MainWindow *ui;
     double firstNum;
@@ -65,5 +82,7 @@ private:
     QString currentOperator;
     QMessageBox msgBox;
     void calculate(double secondNum);
+    double memoryValue;
+    bool mrcPressedOnce;
 };
 #endif // MAINWINDOW_H
