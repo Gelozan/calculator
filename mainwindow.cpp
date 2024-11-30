@@ -364,3 +364,9 @@ void MainWindow::on_cos_button_clicked()
     ui->label_operation->setText("cos(" +QString::number(secondNum)+")");
 }
 
+
+void MainWindow::on_floor_button_clicked()
+{
+    ui->input_line->setText(QString::number(std::floor(ui->input_line->text().toDouble())));
+}
+
