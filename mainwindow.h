@@ -39,7 +39,6 @@ private slots:
 
     void on_nine_button_clicked();
 
-
     void on_point_button_clicked();
 
     void on_clear_button_clicked();
@@ -71,6 +70,10 @@ private slots:
     void on_mm_button_clicked();
 
     void on_mp_button_clicked();
+
+    void on_floor_button_clicked();
+
+    void on_ceil_button_clicked();
 
 private:
     Ui::MainWindow *ui;
