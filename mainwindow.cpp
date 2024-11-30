@@ -168,31 +168,65 @@ void MainWindow::on_delete_button_clicked()
 
 void MainWindow::calculate(double secondNum)
 {
-    if (currentOperator == "+") {
+    if (currentOperator == "+")
+    {
         firstNum += secondNum;
-    } else if (currentOperator == "*") {
+    }
+    else if (currentOperator == "*")
+    {
         firstNum *= secondNum;
-    } else if (currentOperator == "/") {
+    }
+    else if (currentOperator == "/")
+    {
         if (secondNum == 0.0) {
             msgBox.setText("Ошибка! На ноль делить нельзя!");
-            msgBox.exec();
-        } else {
-            firstNum /= secondNum;
-        }
-    } else if (currentOperator == "-") {
-        firstNum -= secondNum;
-    } else if (currentOperator == "%") {
-        if (secondNum == 0.0) {
-            msgBox.setText("Ошибка: Деление на ноль");
             msgBox.exec();
             ui->input_line->setText("0");
             currentOperator = "";
             secondNumberFlag = false;
             return;
-        } else {
+        }
+        else {
+            firstNum /= secondNum;
+        }
+    }
+    else if (currentOperator == "-")
+    {
+        firstNum -= secondNum;
+    }
+    else if (currentOperator == "%")
+    {
+        if (secondNum == 0.0) {
+            msgBox.setText("Ошибка! На ноль делить нельзя!");
+            msgBox.exec();
+            ui->input_line->setText("0");
+            currentOperator = "";
+            secondNumberFlag = false;
+            return;
+        }
+        else
+        {
             firstNum = std::fmod(firstNum, secondNum);
         }
-    }  else {
+    }
+    else if (currentOperator == "^")
+    {
+        if ((firstNum < 0) && (int(secondNum) != secondNum))
+        {
+            msgBox.setText("Ошибка! Не определено.");
+            msgBox.exec();
+            ui->input_line->setText("0");
+            currentOperator = "";
+            secondNumberFlag = false;
+            return;
+        }
+        else
+        {
+            firstNum = std::pow(firstNum, secondNum);
+        }
+    }
+    else
+    {
         firstNum = secondNum;
     }
 
@@ -283,5 +317,37 @@ void MainWindow::on_mod_button_clicked()
     currentOperator = "%";
     secondNumberFlag = true;
     ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
+}
+
+
+void MainWindow::on_power_button_clicked()
+{
+    double secondNum = ui->input_line->text().toDouble();
+
+    if (!currentOperator.isEmpty() && !secondNumberFlag) {
+        calculate(secondNum);
+    } else if (currentOperator.isEmpty()) {
+        firstNum = secondNum;
+    }
+
+    currentOperator = "^";
+    secondNumberFlag = true;
+    ui->label_operation->setText(QString::number(firstNum) + " " + currentOperator);
+}
+
+
+void MainWindow::on_sqrt_button_clicked()
+{
+    double secondNum = ui->input_line->text().toDouble();
+    if (secondNum < 0) {
+        msgBox.setText("Ошибка! Не определено.");
+        msgBox.exec();
+        ui->input_line->setText("0");
+    }
+    else
+    {
+        ui->input_line->setText(QString::number(std::sqrt(secondNum)));
+        ui->label_operation->setText("√" + QString::number(secondNum));
+    }
 }
 
